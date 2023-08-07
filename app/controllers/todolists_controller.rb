@@ -5,7 +5,7 @@ before_action :set_todolist, only: [:show, :edit, :update, :destroy]
     end
   
     def show
-      @todolist = Todolist.find(params[:Todolist_id])
+      @todolist = Todolist.find(params[:id])
     end
   
     def new
@@ -30,7 +30,6 @@ before_action :set_todolist, only: [:show, :edit, :update, :destroy]
     end
   
     def destroy
-      @todolist = Todolist.find(params[:id])
       @todolist.destroy
       redirect_to todolists_path, notice: 'Todolist successfully deleted!'
     end
