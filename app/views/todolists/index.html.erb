@@ -73,7 +73,7 @@
       <% @todolists.each do |todolist_task| %>
         <li>
           <strong><%= todolist_task.task %></strong>
-          <%= link_to "Delete", todolist_task, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this Todolist?" } %>
+        <%= link_to "Delete", todolist_task, data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this Todolist?"}%>
         </li>
       <% end %>
     </ul>
