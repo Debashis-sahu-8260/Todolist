@@ -1,11 +1,11 @@
 class TodolistsController < ApplicationController
-    before_action :authenticate_user!
+before_action :set_todolist, only: [:show, :edit, :update, :destroy]
     def index
       @todolists = current_user.todolists.all
     end
   
     def show
-      @todolist = Todolist.find(params[:id])
+      @todolist = Todolist.find(params[:Todolist_id])
     end
   
     def new
@@ -15,7 +15,7 @@ class TodolistsController < ApplicationController
     def create
       @todolist = current_user.todolists.build(todolist_params)
       if @todolist.save
-        redirect_to @todolists_path, notice: 'TASK successfully created!'      
+        redirect_to todolists_path, notice: 'TASK successfully created!'      
       else
         redirect_to todolists_path, alert: 'Failed to created task!'
       end
@@ -29,11 +29,16 @@ class TodolistsController < ApplicationController
       end
     end
   
-    def destory
+    def destroy
       @todolist = Todolist.find(params[:id])
-      @todolist.destory
-      redirect_to action: 'index', notice: 'Task successfully deleted'
+      @todolist.destroy
+      redirect_to todolists_path, notice: 'Todolist successfully deleted!'
     end
+
+    def set_todolist
+      @todolist = current_user.todolists.find(params[:id])
+    end
+
   
     private
   
